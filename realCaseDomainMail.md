@@ -110,6 +110,22 @@ Kami membuat forward zone file untuk domain yang akan di-hosting:
 sudo nano /etc/bind/db.mydomain.com
 ```
 
+### Langkah 5: Pengujian Konektivitas dan Fungisionalitas
+
+Kami menguji fungsionalitas DNS server dengan perintah `dig` dan `nslookup`:
+
+```bash
+dig @192.168.2.10 mydomain.com
+nslookup mydomain.com 192.168.2.10
+```
+
+Kami menguji fungsionalitas DNS server dengan perintah `dig` dan `nslookup`:
+
+```bash
+dig @192.168.2.10 mydomain.com
+nslookup mydomain.com 192.168.2.10
+```
+
 ![img](realCaseDomain-documentation/digDomain.png)
 
 Hasil verifikasi domain dengan perintah `dig`:
@@ -131,6 +147,11 @@ Kemudian kami mengaktifkan virtual host dengan perintah:
 ```bash
 sudo a2ensite mydomain.com.conf
 sudo systemctl reload apache2
+```
+
+Dari komputer tester, kami mengakses domain yang telah dikonfigurasi melalui browser dengan URL:
+```
+http://mydomain.com
 ```
 
 ![img](realCaseDomain-documentation/aksesDomainHtml.jpeg)
@@ -156,33 +177,6 @@ sudo nano /var/www/mydomain.com/public_html/index.html
 ```
 
 ![img](realCaseDomain-documentation/htmlFile.jpeg)
-
-## Pengujian Konektivitas dan Fungsionalitas
-
-### Langkah 1: Pengujian Router
-
-Kami menguji konfigurasi router dengan melakukan ping ke internet dan ke komputer dalam jaringan internal:
-
-```bash
-ping 8.8.8.8
-ping 192.168.2.10
-```
-
-### Langkah 2: Pengujian DNS Server
-
-Kami menguji fungsionalitas DNS server dengan perintah `dig` dan `nslookup`:
-
-```bash
-dig @192.168.2.10 mydomain.com
-nslookup mydomain.com 192.168.2.10
-```
-
-### Langkah 3: Pengujian Akses Web
-
-Dari komputer tester, kami mengakses domain yang telah dikonfigurasi melalui browser dengan URL:
-```
-http://mydomain.com
-```
 
 ## Kesimpulan
 
