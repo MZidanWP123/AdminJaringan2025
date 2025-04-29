@@ -7,15 +7,37 @@ PRAKTIKUM ADMINISTRASI JARINGAN
 Dr. Ferry Astika Saputra, ST, M.Sc
 
 **Dibuat oleh:**  
-M. Alif aditya
-George Winston Kalim 3123600022
-Mohammad Zidan Wianto Putra  
-3213600029  
+M. Alif aditya 3123600016.
+George Winston Kalim 3123600022.
+Mohammad Zidan Wianto Putra 3213600029.  
 2 D4 Teknik Informatika A  
 
 ---
 
+---
+
+## Tujuan Praktikum
+- Membuat jaringan virtual menggunakan VirtualBox yang terdiri dari 3 VM.
+- Mengkonfigurasi VM1 sebagai router (gateway NAT) menggunakan iptables.
+- Mengkonfigurasi VM2 sebagai DNS Server menggunakan BIND9.
+- Menguji koneksi dan fungsionalitas DNS dari VM3.
+
+---
 ## Topologi
+```
+[Internet]
+    |
+  [VM1] (Router)
+  - enp0s3 (Bridge)
+  - enp0s8 (Internal: 10.252.108.51)
+    |
+  [Internal Network]
+    |-------------------|
+  [VM2] (192.168.2.10)   [VM3] (192.168.2.x)
+  - DNS Server            - Client Test
+```
+
+---
 
 ![img](realCaseDomain-documentation/miniTopologi.png)
 
@@ -54,7 +76,8 @@ systemctl restart networking
 
 ### 5. install iptables 
 ```bash
-sudo apt install iptables
+sudo apt install iptables -y
+echo 1 | sudo tee /proc/sys/net/ipv4/ip-forward
 ```
 
 ### 6. pastikan ip forwarding aktiv di vm1 
@@ -118,3 +141,31 @@ nano /etc/bind/1.200.168.192.db
   - gateway : 192.168.200.1
   - DNS : 192.168.200.1, 1.1.1.1
 ![settingIpVm2](vm1-vm2-docs/assets/settingIpVm2.jpeg)
+
+### **VM3 - Client Uji Coba**
+1. **Set Adapter:** Internal Network
+
+2. **Set IP statis:**
+   - IP: 192.168.200.3
+   - Netmask: 255.255.255.0
+   - Gateway: 192.168.200.1
+   - DNS: 192.168.200.2
+
+3. **Uji Konektivitas:**
+   ```bash
+   ping 192.168.200.1
+   ping 192.168.200.2
+   ping 8.8.8.8
+   ```
+
+4. **Uji DNS:**
+   ```bash
+   dig @192.168.200.2 www.kelompok2.com
+   ```
+
+---
+
+## Kesimpulan
+Dengan mengikuti instruksi ini, seluruh VM dapat saling terhubung menggunakan internal network. VM1 berhasil berfungsi sebagai router NAT, sementara VM2 berfungsi sebagai DNS server untuk domain internal `kelompok2.com`. Pengujian menggunakan ping dan `dig` menunjukkan bahwa jaringan dan layanan DNS berjalan dengan baik.
+
+---
