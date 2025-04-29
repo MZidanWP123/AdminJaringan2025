@@ -119,13 +119,6 @@ dig @192.168.2.10 mydomain.com
 nslookup mydomain.com 192.168.2.10
 ```
 
-Kami menguji fungsionalitas DNS server dengan perintah `dig` dan `nslookup`:
-
-```bash
-dig @192.168.2.10 mydomain.com
-nslookup mydomain.com 192.168.2.10
-```
-
 ![img](realCaseDomain-documentation/digDomain.png)
 
 Hasil verifikasi domain dengan perintah `dig`:
