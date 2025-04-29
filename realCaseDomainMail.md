@@ -9,7 +9,7 @@ Dr. Ferry Astika Saputra, ST, M.Sc
 **Dibuat oleh:**  
 M. Alif aditya 3123600016  
 George Winston Kalim 3123600022  
-Mohammad Zidan Wianto Putra 3213600029  
+Mohammad Zidan Wianto Putra 3123600029  
 2 D4 Teknik Informatika A  
 
 ---
