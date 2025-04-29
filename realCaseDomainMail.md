@@ -42,31 +42,6 @@ Mohammad Zidan Wianto Putra 3123600029
 Pada praktikum ini, kami menggunakan tolopogi jaringan seperti berikut, dimana terdapat beberapa router yang terhubung ke 1 router master, pada gambar di atas, diibaratkan terdapat 2 router saja, dengan IP Address masing-masing `10.252.108.51` dan `10.252.108.52`. Pada masing-masing router, terdapat satu client yang bertugas sebagai DNS server dan Web server dengan IP Address `192.168.x.10`.
 Namun, karena pada praktikum kali ini, DNS dan Router sudah dikonfigurasi oleh pengguna lab jaringan sebelumnya, kami mengkonfigurasi untuk web server.
 
-## Instalasi dan Konfigurasi Apache2
-
-Pada tahap ini, kami akan menginstal dan mengkonfigurasi Apache2 sebagai web server pada komputer dengan IP 192.168.2.10 (DNS Server).
-
-### Langkah 1: Instalasi Apache2
-
-```bash
-sudo apt update
-sudo apt install apache2 -y
-```
-
-![img](realCaseDomain-documentation/instalasiApache.jpeg)
-
-### Langkah 2: Konfigurasi Apache2
-
-Setelah menginstal Apache2, kami melakukan konfigurasi pada file konfigurasi utama Apache2.
-
-```bash
-sudo nano /etc/apache2/apache2.conf
-```
-
-![img](realCaseDomain-documentation/apache2Conf.jpeg)
-
-Pada file konfigurasi tersebut, kami memastikan bahwa server dikonfigurasi dengan benar untuk melayani permintaan web dari jaringan internal.
-
 ## Konfigurasi DNS Server dengan BIND9
 
 ### Langkah 1: Instalasi BIND9
@@ -119,6 +94,31 @@ Hasil verifikasi domain dengan perintah `dig`:
 
 ![img](realCaseDomain-documentation/digDomainLain1.png)
 ![img](realCaseDomain-documentation/digDomainLain2.png)
+
+## Instalasi dan Konfigurasi Apache2
+
+Pada tahap ini, kami akan menginstal dan mengkonfigurasi Apache2 sebagai web server pada komputer dengan IP 192.168.2.10 (DNS Server).
+
+### Langkah 1: Instalasi Apache2
+
+```bash
+sudo apt update
+sudo apt install apache2 -y
+```
+
+![img](realCaseDomain-documentation/instalasiApache.jpeg)
+
+### Langkah 2: Konfigurasi Apache2
+
+Setelah menginstal Apache2, kami melakukan konfigurasi pada file konfigurasi utama Apache2.
+
+```bash
+sudo nano /etc/apache2/apache2.conf
+```
+
+![img](realCaseDomain-documentation/apache2Conf.jpeg)
+
+Pada file konfigurasi tersebut, kami memastikan bahwa server dikonfigurasi dengan benar untuk melayani permintaan web dari jaringan internal.
 
 ## Konfigurasi Web Server
 
