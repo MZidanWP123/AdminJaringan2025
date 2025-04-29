@@ -15,6 +15,12 @@ Mohammad Zidan Wianto Putra
 
 ---
 
+## Topologi
+
+![img](realCaseDomain-documentation/miniTopologi.png)
+
+Pada praktikum ini, kami menggunakan tolopogi jaringan seperti berikut, dimana terdapat beberapa router yang terhubung ke 1 router master
+
 ## VM1
 ### 1. Set Interface untuk Adapter 1 dan Adapter 2
 
