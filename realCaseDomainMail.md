@@ -73,7 +73,7 @@ Pada file konfigurasi tersebut, kami memastikan bahwa server dikonfigurasi denga
 
 ```bash
 sudo apt update
-sudo apt install bind9 bind9utils bind9-doc -y
+sudo apt install bind9 bind9utils
 ```
 
 ![img](realCaseDomain-documentation/instalasiBind9.jpeg)
@@ -94,29 +94,23 @@ Kami juga mengkonfigurasi opsi tambahan pada named.conf.options untuk mengoptima
 
 ### Langkah 3: Konfigurasi Zone Files
 
-Kami membuat dan mengkonfigurasi zone files untuk domain yang akan dikelola oleh DNS server kami:
+Untuk mengecek apakah konfigurasi zone sudah benar, gunakan perintah berikut:
 
 ```bash
-sudo nano /etc/bind/named.conf.local
+named-checkzone [nama_zone] [file_zones]
 ```
+
+output di atas menampilkan OK yang artinya file konfigurasi zone sudah benar
 
 ![img](realCaseDomain-documentation/namedCheckZone.png)
 
-### Langkah 4: Membuat Forward Zone File
-
-Kami membuat forward zone file untuk domain yang akan di-hosting:
-
-```bash
-sudo nano /etc/bind/db.mydomain.com
-```
-
-### Langkah 5: Pengujian Konektivitas dan Fungisionalitas
+### Langkah 4: Pengujian Konektivitas dan Fungisionalitas
 
 Kami menguji fungsionalitas DNS server dengan perintah `dig` dan `nslookup`:
 
 ```bash
-dig @192.168.2.10 mydomain.com
-nslookup mydomain.com 192.168.2.10
+dig kelompok[n].home
+nslookup kelompok[n].home
 ```
 
 ![img](realCaseDomain-documentation/digDomain.png)
@@ -126,50 +120,27 @@ Hasil verifikasi domain dengan perintah `dig`:
 ![img](realCaseDomain-documentation/digDomainLain1.png)
 ![img](realCaseDomain-documentation/digDomainLain2.png)
 
-## Konfigurasi Akses Domain dan Folder HTML
+## Konfigurasi Web Server
 
-### Langkah 1: Konfigurasi Virtual Host
+### Langkah 1: Direktori file Apache 
 
-Kami mengkonfigurasi virtual host di Apache2 untuk domain yang telah dibuat di DNS server:
-
-```bash
-sudo nano /etc/apache2/sites-available/mydomain.com.conf
-```
-
-Kemudian kami mengaktifkan virtual host dengan perintah:
-```bash
-sudo a2ensite mydomain.com.conf
-sudo systemctl reload apache2
-```
-
-Dari komputer tester, kami mengakses domain yang telah dikonfigurasi melalui browser dengan URL:
-```
-http://mydomain.com
-```
-
-![img](realCaseDomain-documentation/aksesDomainHtml.jpeg)
-
-### Langkah 2: Pembuatan Struktur Folder HTML
-
-Kami membuat struktur folder untuk menyimpan file-file website:
-
-```bash
-sudo mkdir -p /var/www/mydomain.com/public_html
-sudo chown -R www-data:www-data /var/www/mydomain.com
-sudo chmod -R 755 /var/www/mydomain.com
-```
+untuk menampikan halaman mengunakan web server Apache, kita bisa masuk ke direktori `/var/www/html`, direktori tersebut adalah direktori default dari Apace untuk menampilkan halaman
 
 ![img](realCaseDomain-documentation/folderHtml.jpeg)
 
-### Langkah 3: Pembuatan File HTML Sederhana
+### Langkah 2: Pembuatan File HTML Sederhana
 
 Kami membuat file HTML sederhana untuk menguji keberhasilan konfigurasi:
 
 ```bash
-sudo nano /var/www/mydomain.com/public_html/index.html
+sudo nano /var/www/html/index.html
 ```
 
 ![img](realCaseDomain-documentation/htmlFile.jpeg)
+
+berikut adalah hasil halaman yang ditampilkan oleh web server
+
+![img](realCaseDomain-documentation/aksesDomainHtml.jpeg)
 
 ## Kesimpulan
 
